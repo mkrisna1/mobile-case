@@ -10,6 +10,8 @@ class PricingCard extends StatelessWidget {
     required this.features,
     this.badgeText,
     this.icon = Icons.laptop_mac,
+    this.onPressed, // callback opsional untuk tombol "Lihat Detail"
+    this.buttonText = 'Lihat Detail',
   });
 
   final String packageName;
@@ -19,6 +21,8 @@ class PricingCard extends StatelessWidget {
   final List<String> features;
   final String? badgeText;
   final IconData icon;
+  final VoidCallback? onPressed; // opsional — jika null, tombol tetap tampil tapi tidak aktif
+  final String buttonText;
 
   @override
   Widget build(BuildContext context) {
@@ -128,7 +132,7 @@ class PricingCard extends StatelessWidget {
                 SizedBox(
                   width: double.infinity,
                   child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: onPressed, // dihubungkan ke callback dari luar
                     style: ElevatedButton.styleFrom(
                       backgroundColor: const Color(0xFF2563EB),
                       foregroundColor: Colors.white,
@@ -138,9 +142,9 @@ class PricingCard extends StatelessWidget {
                       ),
                       elevation: 0,
                     ),
-                    child: const Text(
-                      'Pilih Paket',
-                      style: TextStyle(
+                    child: Text(
+                      buttonText,
+                      style: const TextStyle(
                         fontSize: 15,
                         fontWeight: FontWeight.w700,
                       ),
